@@ -86,9 +86,9 @@
 
         <!-- NOVO: Definição de Rabdomiólise Card -->
         <div class="bg-military-surface-container rounded-xl p-4 shadow-md3-elevated flex items-start gap-4 border-l-4 border-military-gold order-1 lg:order-none">
-            <span class="material-symbols-rounded text-military-gold text-3xl mt-1">medical_services</span>
+            <span class="material-symbols-rounded text-military-gold text-3xl mt-1">info</span>
             <div>
-                <h3 class="font-display font-bold text-military-900 text-sm uppercase mb-1">Definição</h3>
+                <h3 class="font-display font-bold text-military-900 text-sm uppercase mb-1">RABDOMIÓLISE</h3>
                 <p class="text-sm text-military-900 leading-snug">
                     Condição médica caracterizada pela <strong>degradação das células musculares (miócitos)</strong>, resultando na liberação de conteúdo intracelular (CK, mioglobina, eletrólitos) na circulação sistêmica, com risco potencial de <strong>Injúria Renal Aguda (IRA)</strong> e distúrbios eletrolíticos graves.
                 </p>
@@ -140,20 +140,6 @@
                         <p>Dor + Fraqueza + Urina Escura simultâneos ocorrem em <span class="font-bold underline">menos de 10%</span> dos casos. <strong>⛔ Não aguarde todos os sintomas.</strong></p>
                     </div>
                 </div>
-            </div>
-
-
-            <!-- Management -->
-            <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col h-full order-4 lg:order-none">
-                <div class="flex items-center mb-3 text-military-900">
-                    <span class="material-symbols-rounded mr-2 text-2xl text-military-green">bolt</span>
-                    <h2 class="font-display font-bold text-lg">Ação Imediata</h2>
-                </div>
-                <div class="text-center bg-military-surface-container p-3 rounded-lg mb-3">
-                    <p class="font-display font-bold text-xl text-military-green">Diurese ≥ 300 mL/h</p>
-                </div>
-                <p class="text-sm mb-1"><strong>Fluido:</strong> SF 0.9% ou Ringer.</p>
-                <p class="text-xs text-gray-500 italic">Evite Bicarbonato/Manitol de rotina.</p>
             </div>
 
             <!-- Risk Profile -->
@@ -278,36 +264,6 @@
                 </div>
             </div>
 
-            <!-- Algorithm (Agora order-4 no mobile) -->
-            <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col order-4 lg:order-none col-span-1 lg:col-span-2">
-                <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
-                    <span class="material-symbols-rounded mr-2 text-military-900">account_tree</span>
-                    <h3 class="font-display font-bold text-military-900">Algoritmo de Decisão</h3>
-                </div>
-                
-                <p class="text-xs text-gray-400 mb-2 md:hidden flex items-center gap-1">
-                    <span class="material-symbols-rounded text-sm">swipe_left</span> Deslize para ver
-                </p>
-                <div class="mermaid flex-grow overflow-x-auto pb-4 flex justify-center">
-                    graph TD
-                        A[Suspeita Clínica] --> B{CK > 5x LSN<br/>ou >1000?}
-                        B -- Não --> C[Investigar Outras Causas]
-                        B -- Sim --> D[<b>TRATAMENTO IMEDIATO</b>]
-                        D --> E[Reidratação IV]
-                        E --> F[Meta: Diurese 300mL/h]
-                        D --> G{Sinais Alarme?}
-                        G -- Sim --> H[<b>UTI / Intervenção</b>]
-                        G -- Não --> I{Critérios Alta?}
-                        I -- Sim --> J[Alta c/ Seguimento]
-                        I -- Não --> K[Internação Enfermaria]
-                        
-                        style D fill:#FAB932,stroke:#050f14,stroke-width:2px,color:#050f14
-                        style F fill:#078551,stroke:#050f14,stroke-width:2px,color:white
-                        style H fill:#ba1a1a,color:white
-                        style A fill:#f0f4f8,stroke:#050f14
-                        style B fill:#f0f4f8,stroke:#050f14
-                </div>
-            </div>
         </div>
 
         <!-- Score de McMahon Card (Agora order-3 no mobile) -->
@@ -355,6 +311,50 @@
                         <p class="text-xs text-gray-600">Risco de RRT ou Morte: <strong>61.2%</strong></p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Management (Moved here, before Algorithm) -->
+        <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col order-4 lg:order-none">
+            <div class="flex items-center mb-3 text-military-900">
+                <span class="material-symbols-rounded mr-2 text-2xl text-military-green">bolt</span>
+                <h2 class="font-display font-bold text-lg">Ação Imediata</h2>
+            </div>
+            <div class="text-center bg-military-surface-container p-3 rounded-lg mb-3">
+                <p class="font-display font-bold text-xl text-military-green">Diurese ≥ 300 mL/h</p>
+            </div>
+            <p class="text-sm mb-1"><strong>Fluido:</strong> SF 0.9% ou Ringer.</p>
+            <p class="text-xs text-gray-500 italic">Evite Bicarbonato/Manitol de rotina.</p>
+        </div>
+
+        <!-- Algorithm (Moved here, before Checklist) -->
+        <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col order-5 lg:order-none col-span-1 lg:col-span-2">
+            <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
+                <span class="material-symbols-rounded mr-2 text-military-900">account_tree</span>
+                <h3 class="font-display font-bold text-military-900">Algoritmo de Decisão</h3>
+            </div>
+            
+            <p class="text-xs text-gray-400 mb-2 md:hidden flex items-center gap-1">
+                <span class="material-symbols-rounded text-sm">swipe_left</span> Deslize para ver
+            </p>
+            <div class="mermaid flex-grow overflow-x-auto pb-4 flex justify-center">
+                graph TD
+                    A[Suspeita Clínica] --> B{CK > 5x LSN<br/>ou >1000?}
+                    B -- Não --> C[Investigar Outras Causas]
+                    B -- Sim --> D[<b>TRATAMENTO IMEDIATO</b>]
+                    D --> E[Reidratação IV]
+                    E --> F[Meta: Diurese 300mL/h]
+                    D --> G{Sinais Alarme?}
+                    G -- Sim --> H[<b>UTI / Intervenção</b>]
+                    G -- Não --> I{Critérios Alta?}
+                    I -- Sim --> J[Alta c/ Seguimento]
+                    I -- Não --> K[Internação Enfermaria]
+                    
+                    style D fill:#FAB932,stroke:#050f14,stroke-width:2px,color:#050f14
+                    style F fill:#078551,stroke:#050f14,stroke-width:2px,color:white
+                    style H fill:#ba1a1a,color:white
+                    style A fill:#f0f4f8,stroke:#050f14
+                    style B fill:#f0f4f8,stroke:#050f14
             </div>
         </div>
 
@@ -448,7 +448,7 @@
     <!-- Discreet Footer -->
     <footer class="max-w-7xl mx-auto p-4 text-center pb-20 md:pb-4 no-print">
         <p class="text-xs text-gray-400 font-sans">
-            &copy;2026 CT (Md) Mauriston powered by Gemini Ultra
+            &copy;2026 CT (Md) Mauriston. Powered by Gemini Ultra.
         </p>
     </footer>
 
