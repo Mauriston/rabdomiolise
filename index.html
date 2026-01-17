@@ -241,22 +241,43 @@
                     <h3 class="font-display font-bold text-military-red text-lg uppercase">Sinais de Alarme</h3>
                 </div>
                 <div class="text-sm text-military-900 space-y-3">
-                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
-                        <span class="material-symbols-rounded text-military-red">ecg_heart</span> 
-                        Hipercalemia Grave (>6.0/ECG)
+                    <!-- Adjusted: justify-between removed, justify-start added, gap-3 ensures spacing -->
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm justify-start">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-military-red">ecg_heart</span> 
+                            Hipercalemia Grave (>6.0/ECG)
+                        </span>
+                        <!-- Added gap-3 via margin-left class ml-3 to simulate 3 spaces specifically for icon separation -->
+                        <button onclick="openModal('hyperkalemia')" class="text-military-red/70 hover:text-military-red transition-colors focus:outline-none ml-3" aria-label="Saiba mais sobre Hipercalemia">
+                            <span class="material-symbols-rounded text-lg">help</span>
+                        </button>
                     </p>
+                    
                     <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
                         <span class="material-symbols-rounded text-military-red">water_drop</span> 
                         Anúria / Oligúria Refratária
                     </p>
-                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
-                        <span class="material-symbols-rounded text-military-red">masks</span> 
-                        Síndrome Compartimental
+
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm justify-start">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-military-red">masks</span> 
+                            Síndrome Compartimental
+                        </span>
+                        <button onclick="openModal('compartment')" class="text-military-red/70 hover:text-military-red transition-colors focus:outline-none ml-3" aria-label="Saiba mais sobre Síndrome Compartimental">
+                            <span class="material-symbols-rounded text-lg">help</span>
+                        </button>
                     </p>
-                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
-                        <span class="material-symbols-rounded text-military-red">bloodtype</span> 
-                        Coagulação Intravascular (CIVD)
+
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm justify-start">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-military-red">bloodtype</span> 
+                            Coagulação Intravascular (CIVD)
+                        </span>
+                        <button onclick="openModal('dic')" class="text-military-red/70 hover:text-military-red transition-colors focus:outline-none ml-3" aria-label="Saiba mais sobre CIVD">
+                            <span class="material-symbols-rounded text-lg">help</span>
+                        </button>
                     </p>
+
                     <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
                         <span class="material-symbols-rounded text-military-red">monitor_heart</span> 
                         Instabilidade Hemodinâmica
@@ -441,7 +462,8 @@
         </div>
 
         <!-- Infográfico Complementar -->
-        <div class="mt-8 mb-8 no-print flex justify-center">
+        <!-- Alterado mt-8 para mt-24 para triplicar o espaçamento -->
+        <div class="mt-24 mb-8 no-print flex justify-center">
             <img src="https://i.imgur.com/wjxT0G4.png" alt="Infográfico Complementar" class="w-full md:max-w-2xl rounded-xl shadow-md3-elevated">
         </div>
 
@@ -463,6 +485,26 @@
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-military-surface-container/20 p-2 rounded-full active:bg-military-surface-container/40 transition-colors">
             <span class="material-symbols-rounded text-white">arrow_upward</span>
         </button>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity opacity-0" aria-hidden="true">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md transform scale-95 transition-transform duration-300" id="modalPanel">
+            <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-military-surface-container rounded-t-xl">
+                <h3 id="modalTitle" class="font-display font-bold text-military-900 text-lg"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="p-6">
+                <div id="modalContent" class="text-sm text-gray-700 space-y-3 font-sans leading-relaxed"></div>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-b-xl flex justify-end">
+                <button onclick="closeModal()" class="bg-military-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-military-800 transition-colors">
+                    Entendido
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -490,6 +532,84 @@
                 btn.className = "flex-1 py-3 text-sm font-bold text-military-red border-b-4 border-military-red bg-red-50/30 transition-colors";
             }
         }
+
+        // Modal Logic
+        const modalData = {
+            hyperkalemia: {
+                title: "Hipercalemia Grave - Alterações ECG",
+                content: `
+                    <p>A hipercalemia progressiva causa alterações eletrocardiográficas previsíveis:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li><strong>Ondas T apiculadas:</strong> Simétricas e de base estreita ("em tenda").</li>
+                        <li><strong>Achatamento da onda P:</strong> Pode desaparecer com a progressão.</li>
+                        <li><strong>Intervalo PR:</strong> Prolongamento.</li>
+                        <li><strong>Complexo QRS:</strong> Alargamento progressivo.</li>
+                        <li><strong>Fase final:</strong> Padrão sinusoidal, que precede a fibrilação ventricular ou assistolia.</li>
+                    </ul>
+                `
+            },
+            compartment: {
+                title: "Síndrome Compartimental",
+                content: `
+                    <p><strong>Definição:</strong> Aumento da pressão intersticial dentro de um compartimento osteofascial fechado, que excede a pressão de perfusão capilar.</p>
+                    <p class="mt-2">Isso compromete a viabilidade dos tecidos (músculos e nervos) e pode levar à necrose.</p>
+                    <div class="mt-3 bg-red-50 p-3 rounded border-l-4 border-red-500">
+                        <strong>Clínica (5 Ps):</strong> Pain (Dor desproporcional - sinal precoce), Parestesia, Pallor (Palidez), Pulselessness (Ausência de pulso - tardio), Paralysis (Paralisia).
+                    </div>
+                `
+            },
+            dic: {
+                title: "Coagulação Intravascular Disseminada (CIVD)",
+                content: `
+                    <p><strong>Definição:</strong> Ativação sistêmica e descontrolada da coagulação sanguínea.</p>
+                    <p class="mt-2">Resulta na formação disseminada de microtrombos na circulação, causando isquemia tecidual e disfunção de múltiplos órgãos.</p>
+                    <p class="mt-2">Paradoxalmente, o consumo excessivo de plaquetas e fatores de coagulação durante este processo leva a um risco elevado de <strong>sangramentos graves</strong>.</p>
+                `
+            }
+        };
+
+        const modal = document.getElementById('infoModal');
+        const modalPanel = document.getElementById('modalPanel');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+
+            modalTitle.innerText = data.title;
+            modalContent.innerHTML = data.content;
+
+            modal.classList.remove('hidden');
+            // Small timeout for transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalPanel.classList.remove('scale-95');
+                modalPanel.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalPanel.classList.remove('scale-100');
+            modalPanel.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
