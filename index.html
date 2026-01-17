@@ -115,16 +115,16 @@
                     <h2 class="font-display font-bold text-lg">Diagnóstico</h2>
                 </div>
                 <ul class="space-y-3 text-sm flex-grow">
-                    <li class="flex items-start gap-2">
-                        <span class="material-symbols-rounded text-military-green text-lg">check_circle</span>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-rounded text-military-green text-lg flex-shrink-0">check_circle</span>
                         <span><strong>CK Total > 5x LSN</strong> (>1000 UI/L)</span>
                     </li>
-                    <li class="flex items-start gap-2">
-                        <span class="material-symbols-rounded text-gray-500 text-lg">help</span>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-rounded text-gray-500 text-lg flex-shrink-0">help</span>
                         <span>Sintomas inespecíficos são comuns (náusea, febre).</span>
                     </li>
-                    <li class="flex items-start gap-2">
-                        <span class="material-symbols-rounded text-military-red text-lg">cancel</span>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-rounded text-military-red text-lg flex-shrink-0">cancel</span>
                         <span class="leading-tight">NÃO excluir por Mioglobina negativa.</span>
                     </li>
                 </ul>
@@ -166,59 +166,11 @@
             </div>
         </div>
 
-        <!-- NEW: Score de McMahon Card -->
-        <div class="bg-white rounded-xl shadow-md3-elevated p-5 overflow-hidden">
-            <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
-                <span class="material-symbols-rounded mr-2 text-military-900">calculate</span>
-                <h3 class="font-display font-bold text-military-900">Score de Risco de McMahon (Risco de Falência Renal/Morte)</h3>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                <!-- Table Column -->
-                <div>
-                    <table class="w-full text-left text-xs md:text-sm">
-                        <thead class="bg-military-surface-container text-military-900 font-bold uppercase">
-                            <tr>
-                                <th class="p-2 rounded-tl-lg">Variável</th>
-                                <th class="p-2 text-right rounded-tr-lg">Pontos</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr><td class="p-2">Idade (anos): >50-70 / >70-80 / >80</td><td class="p-2 text-right font-bold">1.5 / 2.5 / 3.0</td></tr>
-                            <tr><td class="p-2">Sexo Feminino</td><td class="p-2 text-right font-bold">1.0</td></tr>
-                            <tr><td class="p-2">Creatinina (mg/dL): 1.4-2.2 / >2.2</td><td class="p-2 text-right font-bold">1.5 / 3.0</td></tr>
-                            <tr><td class="p-2">Cálcio Inicial < 7.5 mg/dL</td><td class="p-2 text-right font-bold">2.0</td></tr>
-                            <tr><td class="p-2">Fosfato Inicial: 4.0-5.4 / >5.4 mg/dL</td><td class="p-2 text-right font-bold">1.5 / 3.0</td></tr>
-                            <tr><td class="p-2">Bicarbonato Inicial < 19 mEq/L</td><td class="p-2 text-right font-bold">2.0</td></tr>
-                            <tr><td class="p-2">CK Inicial > 40.000 UI/L</td><td class="p-2 text-right font-bold">2.0</td></tr>
-                            <tr><td class="p-2">Etiologia NÃO (exer, statina, convulsão...)</td><td class="p-2 text-right font-bold">3.0</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Interpretation Column -->
-                <div class="flex flex-col justify-center space-y-4">
-                    <div class="bg-green-50 border-l-4 border-military-green p-3 rounded">
-                        <h4 class="font-bold text-military-green text-sm uppercase mb-1">Baixo Risco (Score < 5)</h4>
-                        <p class="text-xs text-gray-600">Risco de RRT ou Morte: <strong>2.3%</strong></p>
-                    </div>
-                    <div class="bg-yellow-50 border-l-4 border-military-gold p-3 rounded">
-                        <h4 class="font-bold text-military-gold text-sm uppercase mb-1">Risco Intermediário (Score 5-9)</h4>
-                        <p class="text-xs text-gray-600">Considere monitorização intensiva.</p>
-                    </div>
-                    <div class="bg-red-50 border-l-4 border-military-red p-3 rounded">
-                        <h4 class="font-bold text-military-red text-sm uppercase mb-1">Alto Risco (Score > 10)</h4>
-                        <p class="text-xs text-gray-600">Risco de RRT ou Morte: <strong>61.2%</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Section 2: Charts & Algorithm -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             
             <!-- Risk Chart -->
-            <div class="bg-white p-5 rounded-xl shadow-md3-elevated">
+            <div class="bg-white p-5 rounded-xl shadow-md3-elevated order-1 lg:order-none">
                 <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
                     <span class="material-symbols-rounded mr-2 text-military-900">bar_chart</span>
                     <h3 class="font-display font-bold text-military-900">Fatores de Impacto</h3>
@@ -283,8 +235,38 @@
                 </div>
             </div>
 
+            <!-- Sinais de Alarme (Red Flags) Card -->
+            <div class="bg-military-red/5 border-l-4 border-military-red p-5 rounded-xl shadow-md3-elevated order-2 lg:order-none h-full">
+                <div class="flex items-center mb-4">
+                    <span class="material-symbols-rounded mr-2 text-military-red text-2xl">warning</span>
+                    <h3 class="font-display font-bold text-military-red text-lg uppercase">Sinais de Alarme</h3>
+                </div>
+                <div class="text-sm text-military-900 space-y-3">
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
+                        <span class="material-symbols-rounded text-military-red">ecg_heart</span> 
+                        Hipercalemia Grave (>6.0/ECG)
+                    </p>
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
+                        <span class="material-symbols-rounded text-military-red">water_drop</span> 
+                        Anúria / Oligúria Refratária
+                    </p>
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
+                        <span class="material-symbols-rounded text-military-red">masks</span> 
+                        Síndrome Compartimental
+                    </p>
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
+                        <span class="material-symbols-rounded text-military-red">bloodtype</span> 
+                        Coagulação Intravascular (CIVD)
+                    </p>
+                    <p class="font-bold flex items-center gap-2 p-2 bg-white rounded-lg border border-red-100 shadow-sm">
+                        <span class="material-symbols-rounded text-military-red">monitor_heart</span> 
+                        Instabilidade Hemodinâmica
+                    </p>
+                </div>
+            </div>
+
             <!-- Algorithm -->
-            <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col">
+            <div class="bg-white p-5 rounded-xl shadow-md3-elevated flex flex-col order-4 lg:order-none col-span-1 lg:col-span-2">
                 <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
                     <span class="material-symbols-rounded mr-2 text-military-900">account_tree</span>
                     <h3 class="font-display font-bold text-military-900">Algoritmo de Decisão</h3>
@@ -293,7 +275,7 @@
                 <p class="text-xs text-gray-400 mb-2 md:hidden flex items-center gap-1">
                     <span class="material-symbols-rounded text-sm">swipe_left</span> Deslize para ver
                 </p>
-                <div class="mermaid flex-grow overflow-x-auto pb-4">
+                <div class="mermaid flex-grow overflow-x-auto pb-4 flex justify-center">
                     graph TD
                         A[Suspeita Clínica] --> B{CK > 5x LSN<br/>ou >1000?}
                         B -- Não --> C[Investigar Outras Causas]
@@ -301,7 +283,7 @@
                         D --> E[Reidratação IV]
                         E --> F[Meta: Diurese 300mL/h]
                         D --> G{Sinais Alarme?}
-                        G -- Sim --> H[<b>UTI</b><br/>K+ alto, Anúria]
+                        G -- Sim --> H[<b>UTI / Intervenção</b>]
                         G -- Não --> I{Critérios Alta?}
                         I -- Sim --> J[Alta c/ Seguimento]
                         I -- Não --> K[Internação Enfermaria]
@@ -311,6 +293,54 @@
                         style H fill:#ba1a1a,color:white
                         style A fill:#f0f4f8,stroke:#050f14
                         style B fill:#f0f4f8,stroke:#050f14
+                </div>
+            </div>
+        </div>
+
+        <!-- Score de McMahon Card -->
+        <div class="bg-white rounded-xl shadow-md3-elevated p-5 overflow-hidden order-3 lg:order-none">
+            <div class="flex items-center mb-4 border-b border-gray-100 pb-2">
+                <span class="material-symbols-rounded mr-2 text-military-900">calculate</span>
+                <h3 class="font-display font-bold text-military-900">Score de Risco de McMahon (Risco de Falência Renal/Morte)</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <!-- Table Column -->
+                <div>
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-military-surface-container text-military-900 font-bold uppercase">
+                            <tr>
+                                <th class="p-2 rounded-tl-lg">Variável</th>
+                                <th class="p-2 text-right rounded-tr-lg">Pontos</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr><td class="p-2">Idade (anos): >50-70 / >70-80 / >80</td><td class="p-2 text-right font-bold">1.5 / 2.5 / 3.0</td></tr>
+                            <tr><td class="p-2">Sexo Feminino</td><td class="p-2 text-right font-bold">1.0</td></tr>
+                            <tr><td class="p-2">Creatinina (mg/dL): 1.4-2.2 / >2.2</td><td class="p-2 text-right font-bold">1.5 / 3.0</td></tr>
+                            <tr><td class="p-2">Cálcio Inicial < 7.5 mg/dL</td><td class="p-2 text-right font-bold">2.0</td></tr>
+                            <tr><td class="p-2">Fosfato Inicial: 4.0-5.4 / >5.4 mg/dL</td><td class="p-2 text-right font-bold">1.5 / 3.0</td></tr>
+                            <tr><td class="p-2">Bicarbonato Inicial < 19 mEq/L</td><td class="p-2 text-right font-bold">2.0</td></tr>
+                            <tr><td class="p-2">CK Inicial > 40.000 UI/L</td><td class="p-2 text-right font-bold">2.0</td></tr>
+                            <tr><td class="p-2">Etiologia NÃO (exer, statina, convulsão...)</td><td class="p-2 text-right font-bold">3.0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interpretation Column -->
+                <div class="flex flex-col justify-center space-y-4">
+                    <div class="bg-green-50 border-l-4 border-military-green p-3 rounded">
+                        <h4 class="font-bold text-military-green text-sm uppercase mb-1">Baixo Risco (Score < 5)</h4>
+                        <p class="text-xs text-gray-600">Risco de RRT ou Morte: <strong>2.3%</strong></p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-military-gold p-3 rounded">
+                        <h4 class="font-bold text-military-gold text-sm uppercase mb-1">Risco Intermediário (Score 5-9)</h4>
+                        <p class="text-xs text-gray-600">Considere monitorização intensiva.</p>
+                    </div>
+                    <div class="bg-red-50 border-l-4 border-military-red p-3 rounded">
+                        <h4 class="font-bold text-military-red text-sm uppercase mb-1">Alto Risco (Score > 10)</h4>
+                        <p class="text-xs text-gray-600">Risco de RRT ou Morte: <strong>61.2%</strong></p>
+                    </div>
                 </div>
             </div>
         </div>
